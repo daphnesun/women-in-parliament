@@ -1,0 +1,307 @@
+---
+title: "final_project_plot"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+```
+
+#Import csv 
+```{r}
+women <- read.csv("t_level_checked.csv")
+raw <- read.csv("t_all_withNA.csv")
+
+#Adjust the dataframe
+
+names(women)[2:11] = gsub(pattern = "r_", replacement = "20", x = names(women)[2:11])
+names(women)[12:21] = gsub(pattern = "r_", replacement = "200", x = names(women)[12:21])
+
+women <- women[,sort(names(women))]
+women <- women %>%
+  select(w_19, everything())
+names(women)[1] <- paste("country")
+
+women2<- data.frame(women)
+women2[women2=="0"]<-NA
+women2[, "max"] <- apply(women2[, 2:21], 1, max)
+women2[, "min"] <- apply(women2[, 2:21], 1, min)
+women2$gap <- (women2$max - women2$min)
+```
+
+#Subset different groups 
+```{r}
+g5 <- women[women$`2019` >= 5,]
+
+g4 <- women[women$`2019` == 4,]
+g4_16 <- g4[1:16,]
+g4_32 <- g4[17:32,]
+g4_35 <- g4[20:35,]
+
+g3 <- women[women$`2019` == 3,]
+g3_16 <- g3[1:16,]
+g3_32 <- g3[17:32,]
+g3_48 <- g3[33:48,]
+g3_55 <- g3[40:55,]
+
+g2 <- women[women$`2019` == 2,]
+g2_16 <- g2[1:16,]
+g2_32 <- g2[17:32,]
+g2_48 <- g2[33:48,]
+g2_61 <- g2[49:61,]
+
+
+g1 <- women[women$`2019` == 1,]
+g1_16 <- g1[1:16,]
+g1_27 <- g1[12:27,]
+
+g_progress <- women2[women2$gap >= 3,]
+women2[women2==NA] <- NULL
+
+
+g1_2 <- g1[c(1, 14, 15, 16, 17), ]
+g2_2 <- women[c(112, 114, 122, 141, 150, 165), ]
+g3_2 <- women[c(62, 64, 73, 79, 81, 84, 85, 87), ]
+
+
+```
+
+
+```{r}
+print(women[,1])
+```
+
+
+
+#Plotting: barplot
+```{r}
+#Test: plotting one country
+barplot(unlist(women[2, -1]), space = 0, border = NA, 
+        xaxt = "n", yaxt ="n", main = women[2, 1], line = -4, 
+        cex.main = 5, ylim = c(0,5 ),
+        col = "#F4D36C")
+
+```
+
+
+```{r}
+# Use for-loop to plot multiple lines
+par(mfrow = c(4,6), mar = c(0, 0, 0, 0) + 0.2)
+for(i in 1:nrow(g5)){
+barplot(unlist(g5[i, -1]), space = 0, border = NA,
+        xaxt = "n", yaxt ="n",
+        main = g5[i, 1], line = -3, cex.main = 1.5,
+        ylim = c(0,5),
+        col = "#F4D36C")
+}
+```
+
+```{r}
+g3_2 <- women[c(86,91,97,101,103),]
+par(mfrow = c(4,6), mar = c(0, 0, 0, 0) + 0.2)
+for(i in 1:nrow(g3_2)){
+barplot(unlist(g3_2[i, -1]), space = 0, border = NA,
+        xaxt = "n", yaxt ="n",
+        main = g3_2[i, 1], line = -3, cex.main = 1.5,
+        ylim = c(0,5),
+        col = "#EF7524")
+}
+
+```
+
+
+# Plotting: ggplot2 
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+```
+
+
+# g5: 15 countries
+```{r}
+g5 %>%
+	gather("year", "degree", 2:21) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#F4D36C", fill="#F4D36C") + 
+	facet_wrap(~ country) + 
+  theme_void() 
+```
+
+# g4: 35 countries
+```{r}
+# g4 %>%
+# 	gather("year", "degree", 2:21) %>%
+# 	replace_na(list(degree=0)) %>%
+# 	ggplot() +
+# 	aes(year, degree) +
+#     geom_col(color="#FBA44C", fill="#FBA44C") + 
+# 	facet_wrap(~ country, ncol = 4) + 
+#   theme_void() +
+#   coord_fixed(ratio=1.5)
+
+g4_16 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#FBA44C", fill="#FBA44C") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g4_32 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#FBA44C", fill="#FBA44C") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g4_35 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#FBA44C", fill="#FBA44C") + 
+	facet_wrap(~ country) + 
+  theme_void()
+
+```
+
+# g3: 55 countries
+```{r}
+# g3 %>%
+# 	gather("year", "degree", 2:21) %>%
+# 	replace_na(list(degree=0)) %>%
+# 	ggplot() +
+# 	aes(year, degree) +
+#     geom_col(color="#EF7524", fill="#EF7524") + 
+# 	facet_wrap(~ country, ncol = 4, , nrow = 100) + 
+#   theme_void() +
+#   coord_fixed(ratio=1.1)
+
+g3_16 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#EF7524", fill="#EF7524") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g3_32 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#EF7524", fill="#EF7524") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g3_48 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#EF7524", fill="#EF7524") + 
+	facet_wrap(~ country) + 
+  theme_void()
+
+g3_55 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#EF7524", fill="#EF7524") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+```
+
+# g2: 61 countries
+```{r}
+# g2 %>%
+# 	gather("year", "degree", 2:21) %>%
+# 	replace_na(list(degree=0)) %>%
+# 	ggplot() +
+# 	aes(year, degree) +
+#     geom_col(color="#D0552A", fill="#D0552A") + 
+# 	facet_wrap(~ country) + 
+#   theme_void()
+
+g2_16 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#D0552A", fill="#D0552A") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g2_32 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#D0552A", fill="#D0552A") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g2_48 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#D0552A", fill="#D0552A") + 
+	facet_wrap(~ country) + 
+  theme_void()
+
+g2_61 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#D0552A", fill="#D0552A") + 
+	facet_wrap(~ country) + 
+  theme_void()
+```
+
+# g1: 27 countries
+```{r}
+# g1 %>%
+# 	gather("year", "degree", 2:21) %>%
+# 	replace_na(list(degree=0)) %>%
+# 	ggplot() +
+# 	aes(year, degree) +
+#     geom_col(color="#A2422F", fill="#A2422F") + 
+# 	facet_wrap(~ country, ncol = 4) + 
+#   theme_void()
+
+g1_16 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#A2422F", fill="#A2422F") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+
+g1_27 %>%
+  gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="#A2422F", fill="#A2422F") + 
+	facet_wrap(~ country, ncol = 4) + 
+  theme_void()
+```

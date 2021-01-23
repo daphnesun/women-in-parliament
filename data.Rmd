@@ -1,0 +1,1197 @@
+---
+title: "final_project_women_politics"
+date: "2020/6/21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(httr)
+library(rvest) 
+options(stringsAsFactors = F)
+```
+
+# 2019
+```{r}
+url_19 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010119.htm"
+w_19 <- read_html(url_19) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+w_19 <- as.data.frame(w_19)
+w_19 <- w_19[(5:197),]
+
+w_19 <- as.data.frame(w_19) %>%
+  mutate(id = row_number())
+w_19$w_19 <- gsub(" [0-9]+", "",w_19$w_19)
+
+r_19 <- read_html(url_19) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_19 <- as.data.frame(r_19)
+r_19 <- r_19[(2:194),]
+
+r_19 <- as.data.frame(r_19) %>%
+  mutate(id = row_number())
+
+t_19 <- merge(w_19,r_19,by = "id")
+t_19[1] <- NULL
+```
+# 2018
+```{r}
+url_18 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010118.htm"
+w_18 <- read_html(url_18) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+w_18 <- as.data.frame(w_18)
+w_18 <- w_18[(5:197),]
+
+w_18 <- as.data.frame(w_18) %>%
+  mutate(id = row_number())
+w_18$w_18 <- gsub(" [0-9]+", "",w_18$w_18)
+
+r_18 <- read_html(url_18) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_18 <- as.data.frame(r_18)
+r_18 <- r_18[(2:194),]
+
+r_18 <- as.data.frame(r_18) %>%
+  mutate(id = row_number())
+
+t_18 <- merge(w_18,r_18,by = "id")
+t_18[1] <- NULL
+```
+# 2017
+```{r}
+url_17 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010117.htm"
+w_17 <- read_html(url_17) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+w_17 <- as.data.frame(w_17)
+w_17 <- w_17[(5:197),]
+
+w_17 <- as.data.frame(w_17) %>%
+  mutate(id = row_number())
+w_17$w_17 <- gsub(" [0-9]+", "",w_17$w_17)
+
+r_17 <- read_html(url_17) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_17 <- as.data.frame(r_17)
+r_17 <- r_17[(2:194),]
+
+r_17 <- as.data.frame(r_17) %>%
+  mutate(id = row_number())
+
+t_17 <- merge(w_17,r_17,by = "id")
+t_17[1] <- NULL
+```
+# 2016
+```{r}
+url_16 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010116.htm"
+w_16 <- read_html(url_16) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_16 <- as.data.frame(w_16)
+w_16 <- w_16[(5:195),]
+
+w_16 <- as.data.frame(w_16) %>%
+  mutate(id = row_number())
+w_16$w_16 <- gsub(" [0-9]+", "",w_16$w_16)
+
+r_16 <- read_html(url_16) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_16 <- as.data.frame(r_16)
+r_16 <- r_16[(2:192),]
+
+r_16 <- as.data.frame(r_16) %>%
+  mutate(id = row_number())
+
+t_16 <- merge(w_16,r_16,by = "id")
+t_16[1] <- NULL
+```
+# 2015
+```{r}
+url_15 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010115.htm"
+w_15 <- read_html(url_15) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_15 <- as.data.frame(w_15)
+w_15 <- w_15[(5:195),]
+
+w_15 <- as.data.frame(w_15) %>%
+  mutate(id = row_number())
+w_15$w_15 <- gsub(" [0-9]+", "",w_15$w_15)
+
+r_15 <- read_html(url_15) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_15 <- as.data.frame(r_15)
+r_15 <- r_15[(2:192),]
+
+r_15 <- as.data.frame(r_15) %>%
+  mutate(id = row_number())
+
+t_15 <- merge(w_15,r_15,by = "id")
+t_15[1] <- NULL
+```
+# 2014
+```{r}
+url_14 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010114.htm"
+w_14 <- read_html(url_14) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_14 <- as.data.frame(w_14)
+w_14 <- w_14[(5:193),]
+
+w_14 <- as.data.frame(w_14) %>%
+  mutate(id = row_number())
+w_14$w_14 <- gsub(" [0-9]+", "",w_14$w_14)
+
+r_14 <- read_html(url_14) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_14 <- as.data.frame(r_14)
+r_14 <- r_14[(2:190),]
+
+r_14 <- as.data.frame(r_14) %>%
+  mutate(id = row_number())
+
+t_14 <- merge(w_14,r_14,by = "id")
+t_14[1] <- NULL
+```
+# 2013
+```{r}
+url_13 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif010113.htm"
+w_13 <- read_html(url_13) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_13 <- as.data.frame(w_13)
+w_13 <- w_13[(5:194),]
+
+w_13 <- as.data.frame(w_13) %>%
+  mutate(id = row_number())
+w_13$w_13 <- gsub(" [0-9]+", "",w_13$w_13)
+
+r_13 <- read_html(url_13) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_13 <- as.data.frame(r_13)
+r_13 <- r_13[(2:191),]
+
+r_13 <- as.data.frame(r_13) %>%
+  mutate(id = row_number())
+
+t_13 <- merge(w_13,r_13,by = "id")
+t_13[1] <- NULL
+```
+# 2012
+```{r}
+url_12 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310112.htm"
+w_12 <- read_html(url_12) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_12 <- as.data.frame(w_12)
+w_12 <- w_12[(5:193),]
+
+w_12 <- as.data.frame(w_12) %>%
+  mutate(id = row_number())
+w_12$w_12 <- gsub(" [0-9]+", "",w_12$w_12)
+
+r_12 <- read_html(url_12) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_12 <- as.data.frame(r_12)
+r_12 <- r_12[(2:190),]
+
+r_12 <- as.data.frame(r_12) %>%
+  mutate(id = row_number())
+
+t_12 <- merge(w_12,r_12,by = "id")
+t_12[1] <- NULL
+```
+# 2011
+```{r}
+url_11 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310111.htm"
+w_11 <- read_html(url_11) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_11 <- as.data.frame(w_11)
+w_11 <- w_11[(5:192),]
+
+w_11 <- as.data.frame(w_11) %>%
+  mutate(id = row_number())
+w_11$w_11 <- gsub(" [0-9]+", "",w_11$w_11)
+
+r_11 <- read_html(url_11) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_11 <- as.data.frame(r_11)
+r_11 <- r_11[(2:189),]
+
+r_11 <- as.data.frame(r_11) %>%
+  mutate(id = row_number())
+
+t_11 <- merge(w_11,r_11,by = "id")
+t_11[1] <- NULL
+```
+# 2010
+```{r}
+url_10 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310110.htm"
+w_10 <- read_html(url_10) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_10 <- as.data.frame(w_10)
+w_10 <- w_10[(5:191),]
+
+w_10 <- as.data.frame(w_10) %>%
+  mutate(id = row_number())
+w_10$w_10 <- gsub(" [0-9]+", "",w_10$w_10)
+
+r_10 <- read_html(url_10) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+r_10 <- as.data.frame(r_10)
+r_10 <- r_10[(2:188),]
+
+r_10 <- as.data.frame(r_10) %>%
+  mutate(id = row_number())
+
+t_10 <- merge(w_10,r_10,by = "id")
+t_10[1] <- NULL
+```
+# 2009
+```{r}
+url_9 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310109.htm"
+w_9 <- read_html(url_9) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_9 <- as.data.frame(w_9)
+w_9 <- w_9[(4:191),]
+w_9 <- as.data.frame(w_9) %>%
+        mutate(id = row_number())
+w_9$w_9 <- gsub(" [0-9]+", "",w_9$w_9)
+
+r_9 <- read_html(url_9) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_9 <- as.data.frame(r_9)
+r_9 <- r_9[(2:189),]
+r_9 <- as.data.frame(r_9) %>%
+        mutate(id = row_number())
+
+t_9<- merge(w_9, r_9, by = "id")
+t_9[1] <- NULL
+```
+# 2008
+```{r}
+url_8 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310108.htm"
+
+w_8 <- read_html(url_8) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_8 <- as.data.frame(w_8)
+w_8 <- w_8[(4:191),]
+w_8 <- as.data.frame(w_8) %>%
+        mutate(id = row_number())
+w_8$w_8 <- gsub(" [0-9]+", "",w_8$w_8)
+
+r_8 <- read_html(url_8) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_8 <- as.data.frame(r_8)
+r_8 <- r_8[(2:189),]
+r_8 <- as.data.frame(r_8) %>%
+        mutate(id = row_number())
+
+t_8<- merge(w_8, r_8, by = "id")
+t_8[1] <- NULL
+```
+# 2007
+```{r}
+url_7 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310107.htm"
+
+w_7 <- read_html(url_7) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_7 <- as.data.frame(w_7)
+w_7 <- w_7[(4:192),]
+w_7 <- as.data.frame(w_7) %>%
+        mutate(id = row_number())
+w_7$w_7 <- gsub(" [0-9]+", "",w_7$w_7)
+
+r_7 <- read_html(url_7) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_7 <- as.data.frame(r_7)
+r_7 <- r_7[(2:190),]
+r_7 <- as.data.frame(r_7) %>%
+        mutate(id = row_number())
+
+t_7<- merge(w_7, r_7, by = "id")
+t_7[1] <- NULL
+```
+# 2006
+```{r}
+url_6 <- "http://web.archive.org/web/20190315152617/http://archive.ipu.org/wmn-e/arc/classif310106.htm"
+
+w_6 <- read_html(url_6) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_6 <- as.data.frame(w_6)
+w_6 <- w_6[(4:190),]
+w_6 <- as.data.frame(w_6) %>%
+        mutate(id = row_number())
+w_6$w_6 <- gsub(" [0-9]+", "",w_6$w_6)
+
+r_6 <- read_html(url_6) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_6 <- as.data.frame(r_6)
+r_6 <- r_6[(2:188),]
+r_6 <- as.data.frame(r_6) %>%
+        mutate(id = row_number())
+
+t_6<- merge(w_6, r_6, by = "id")
+t_6[1] <- NULL
+```
+# 2005
+```{r}
+url_5 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310105.htm"
+
+w_5 <- read_html(url_5) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_5 <- as.data.frame(w_5)
+w_5 <- w_5[(4:187),]
+w_5 <- as.data.frame(w_5) %>%
+        mutate(id = row_number())
+w_5$w_5 <- gsub(" [0-9]+", "",w_5$w_5)
+
+r_5 <- read_html(url_5) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_5 <- as.data.frame(r_5)
+r_5 <- r_5[(2:185),]
+r_5 <- as.data.frame(r_5) %>%
+        mutate(id = row_number())
+
+t_5<- merge(w_5, r_5, by = "id")
+t_5[1] <- NULL
+```
+# 2004
+```{r}
+url_4 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif300104.htm"
+
+w_4 <- read_html(url_4) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_4 <- as.data.frame(w_4)
+w_4 <- w_4[(4:184),]
+w_4 <- as.data.frame(w_4) %>%
+        mutate(id = row_number())
+w_4$w_4 <- gsub(" [0-9]+", "",w_4$w_4)
+
+r_4 <- read_html(url_4) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_4 <- as.data.frame(r_4)
+r_4 <- r_4[(2:182),]
+r_4 <- as.data.frame(r_4) %>%
+        mutate(id = row_number())
+
+t_4<- merge(w_4, r_4, by = "id")
+t_4[1] <- NULL
+```
+# 2003
+```{r}
+url_3 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif310103.htm"
+
+w_3 <- read_html(url_3) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_3 <- as.data.frame(w_3)
+w_3 <- w_3[(4:185),]
+w_3 <- as.data.frame(w_3) %>%
+        mutate(id = row_number())
+w_3$w_3 <- gsub(" [0-9]+", "",w_3$w_3)
+
+r_3 <- read_html(url_3) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_3 <- as.data.frame(r_3)
+r_3 <- r_3[(2:183),]
+r_3 <- as.data.frame(r_3) %>%
+        mutate(id = row_number())
+
+t_3<- merge(w_3, r_3, by = "id")
+t_3[1] <- NULL
+```
+# 2002
+```{r}
+url_2 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif040202.htm"
+
+w_2 <- read_html(url_2) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_2 <- as.data.frame(w_2)
+w_2 <- w_2[(4:182),]
+w_2 <- as.data.frame(w_2) %>%
+        mutate(id = row_number())
+w_2$w_2 <- gsub(" [0-9]+", "",w_2$w_2)
+
+r_2 <- read_html(url_2) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_2 <- as.data.frame(r_2)
+r_2 <- r_2[(2:180),]
+r_2 <- as.data.frame(r_2) %>%
+        mutate(id = row_number())
+
+t_2<- merge(w_2, r_2, by = "id")
+t_2[1] <- NULL
+```
+# 2001
+```{r}
+url_1 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif300101.htm"
+
+w_1 <- read_html(url_1) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_1 <- as.data.frame(w_1)
+w_1 <- w_1[(4:181),]
+w_1 <- as.data.frame(w_1) %>%
+        mutate(id = row_number())
+w_1$w_1 <- gsub(" [0-9]+", "",w_1$w_1)
+
+r_1 <- read_html(url_1) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_1 <- as.data.frame(r_1)
+r_1 <- r_1[(2:179),]
+r_1 <- as.data.frame(r_1) %>%
+        mutate(id = row_number())
+
+t_1<- merge(w_1, r_1, by = "id")
+t_1[1] <- NULL
+```
+# 2000
+```{r}
+url_0 <- "http://webcache.googleusercontent.com/search?q=cache:http://archive.ipu.org/wmn-e/arc/classif250100.htm"
+
+w_0 <- read_html(url_0) %>%
+  html_nodes("td:nth-child(2)") %>%
+  html_text()
+
+w_0 <- as.data.frame(w_0)
+w_0 <- w_0[(4:180),]
+w_0 <- as.data.frame(w_0) %>%
+        mutate(id = row_number())
+w_0$w_0 <- gsub(" [0-9]+", "",w_0$w_0)
+
+r_0 <- read_html(url_0) %>%
+  html_nodes("td:nth-child(6)") %>%
+  html_text()
+
+r_0 <- as.data.frame(r_0)
+r_0 <- r_0[(2:178),]
+r_0 <- as.data.frame(r_0) %>%
+        mutate(id = row_number())
+
+t_0<- merge(w_0, r_0, by = "id")
+t_0[1] <- NULL
+
+```
+
+
+#Joining Data
+```{r}
+# Joining data of 2019-2010
+t_all <- t_19 %>%  left_join(t_18, by = c("w_19" = "w_18")) %>%
+         left_join(t_17, by = c("w_19" = "w_17")) %>%
+         left_join(t_16, by = c("w_19" = "w_16")) %>%
+         left_join(t_15, by = c("w_19" = "w_15")) %>%
+         left_join(t_14, by = c("w_19" = "w_14")) %>%
+         left_join(t_13, by = c("w_19" = "w_13")) %>%
+         left_join(t_12, by = c("w_19" = "w_12")) %>%
+         left_join(t_11, by = c("w_19" = "w_11")) %>%
+         left_join(t_10, by = c("w_19" = "w_10")) %>%
+         left_join(t_9, by = c("w_19" = "w_9")) %>%
+         left_join(t_8, by = c("w_19" = "w_8")) %>%
+         left_join(t_7, by = c("w_19" = "w_7")) %>%
+         left_join(t_6, by = c("w_19" = "w_6")) %>%
+         left_join(t_5, by = c("w_19" = "w_5")) %>%
+         left_join(t_4, by = c("w_19" = "w_4")) %>%
+         left_join(t_3, by = c("w_19" = "w_3")) %>%
+         left_join(t_2, by = c("w_19" = "w_2")) %>%
+         left_join(t_1, by = c("w_19" = "w_1")) %>%
+         left_join(t_0, by = c("w_19" = "w_0")) 
+```
+
+#Cleaning Data
+```{r}
+# Remove "%"
+t_all$r_8 <- gsub("%", "",t_all$r_8)
+t_all$r_9 <- gsub("%", "",t_all$r_9)
+t_all$r_10 <- gsub("%", "",t_all$r_10)
+t_all$r_11 <- gsub("%", "",t_all$r_11)
+t_all$r_12 <- gsub("%", "",t_all$r_12)
+t_all$r_13 <- gsub("%", "",t_all$r_13)
+t_all$r_14 <- gsub("%", "",t_all$r_14)
+t_all$r_15 <- gsub("%", "",t_all$r_15)
+t_all$r_16 <- gsub("%", "",t_all$r_16)
+t_all$r_17 <- gsub("%", "",t_all$r_17)
+t_all$r_18 <- gsub("%", "",t_all$r_18)
+t_all$r_19 <- gsub("%", "",t_all$r_19)
+
+# Replace "?" 
+
+t_all$r_0 <- gsub("\\?", "0",t_all$r_0)
+t_all$r_1 <- gsub("\\?", "0",t_all$r_1)
+t_all$r_2 <- gsub("\\?", "0",t_all$r_2)
+t_all$r_3 <- gsub("\\?", "0",t_all$r_3)
+t_all$r_4 <- gsub("\\?", "0",t_all$r_4)
+t_all$r_5 <- gsub("\\?", "0",t_all$r_5)
+t_all$r_6 <- gsub("\\?", "0",t_all$r_6)
+t_all$r_7 <- gsub("\\?", "0",t_all$r_7)
+t_all$r_8 <- gsub("\\?", "0",t_all$r_8)
+t_all$r_9 <- gsub("\\?", "0",t_all$r_9)
+t_all$r_10 <- gsub("\\?", "0",t_all$r_10)
+t_all$r_11 <- gsub("\\?", "0",t_all$r_11)
+t_all$r_12 <- gsub("\\?", "0",t_all$r_12)
+
+# t_all$r_0 <- gsub("\\?", "NA",t_all$r_0)
+# t_all$r_1 <- gsub("\\?", "NA",t_all$r_1)
+# t_all$r_2 <- gsub("\\?", "NA",t_all$r_2)
+# t_all$r_3 <- gsub("\\?", "NA",t_all$r_3)
+# t_all$r_4 <- gsub("\\?", "NA",t_all$r_4)
+# t_all$r_5 <- gsub("\\?", "NA",t_all$r_5)
+# t_all$r_6 <- gsub("\\?", "NA",t_all$r_6)
+# t_all$r_7 <- gsub("\\?", "NA",t_all$r_7)
+# t_all$r_8 <- gsub("\\?", "NA",t_all$r_8)
+# t_all$r_9 <- gsub("\\?", "NA",t_all$r_9)
+# t_all$r_10 <- gsub("\\?", "NA",t_all$r_10)
+# t_all$r_11 <- gsub("\\?", "NA",t_all$r_11)
+# t_all$r_12 <- gsub("\\?", "NA",t_all$r_12)
+
+# t_all$r_0 <- gsub("NA", "0",t_all$r_0)
+# t_all$r_1 <- gsub("NA", "0",t_all$r_1)
+# t_all$r_2 <- gsub("NA", "0",t_all$r_2)
+# t_all$r_3 <- gsub("NA", "0",t_all$r_3)
+# t_all$r_4 <- gsub("NA", "0",t_all$r_4)
+# t_all$r_5 <- gsub("NA", "0",t_all$r_5)
+# t_all$r_6 <- gsub("NA", "0",t_all$r_6)
+# t_all$r_7 <- gsub("NA", "0",t_all$r_7)
+# t_all$r_8 <- gsub("NA", "0",t_all$r_8)
+# t_all$r_9 <- gsub("NA", "0",t_all$r_9)
+# t_all$r_10 <- gsub("NA", "0",t_all$r_10)
+# t_all$r_11 <- gsub("NA", "0",t_all$r_11)
+# t_all$r_12 <- gsub("NA", "0",t_all$r_12)
+
+# Replace "NA"
+t_all[is.na(t_all)] <- -0
+
+# Replace "," to "."
+t_all$r_19 <- gsub(",", ".",t_all$r_19)
+```
+
+#Download data csv
+```{r}
+write.csv(t_all,"/Users/sunchiachun/Documents/作業/1082新聞資料處理與視覺呈現/Final report/t_all_2.csv", row.names = FALSE)
+
+write.csv(t_all,"/Users/sunchiachun/Documents/作業/1082新聞資料處理與視覺呈現/Final report/t_all_withNA.csv", row.names = FALSE)
+
+```
+
+
+
+#Categorizing Data:2019
+```{r} 
+# Duplicate a dataframe
+t_level <-data.frame(t_all)
+
+# Convert data class to numeric
+
+# Categorizing data
+for (i in 1:nrow(t_all)){
+  if (t_all$r_19[i] >= 50 & t_all$r_19[i] < 70){
+    t_level$r_19[i] <- 6
+  } else if (t_all$r_19[i] >= 40 & t_all$r_19[i] < 50){
+    t_level$r_19[i] <- 5
+  } else if (t_all$r_19[i] >= 30 & t_all$r_19[i] < 40){
+    t_level$r_19[i] <- 4
+  } else if (t_all$r_19[i] >= 20 & t_all$r_19[i] < 30){
+    t_level$r_19[i] <- 3
+  } else if (t_all$r_19[i] >= 10 & t_all$r_19[i] < 20){
+    t_level$r_19[i] <- 2
+  # } else if (t_all$r_19[i] < 0){
+  #   t_level$r_19[i] <- 0    
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+
+
+# as.data.frame(
+#   lapply(
+#     t_all, 
+#     function(col) 
+#       if(is.numeric(col)) {col + 1} else {col}))
+#         if (col >= 50 & col < 70){
+#           t_level[i,j] <- 6
+#         } else if (t_all[i,j] >= 40 & t_all[i,j] < 50){
+#           t_level[i,j] <- 5
+#         } else if (t_all[i,j] >= 30 & t_all[i,j] < 40){
+#           t_level[i,j] <- 4
+#         } else if (t_all[i,j] >= 20 & t_all[i,j] < 30){
+#           t_level[i,j] <- 3
+#         } else if (t_all[i,j] >= 10 & t_all[i,j] < 20){
+#           t_level[i,j] <- 2
+#         # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+#         #   t_level$r_19[i] <- 1
+#        }
+#       }
+#       }
+# 
+
+# for (i in 1:nrow(t_all[i]))
+#   {
+#    for(j in 2:ncol(t_all[j])){
+#   if (t_all[i,j] >= 50 & t_all[i,j] < 70){
+#     t_level[i,j] <- 6
+#   } else if (t_all[i,j] >= 40 & t_all[i,j] < 50){
+#     t_level[i,j] <- 5
+#   } else if (t_all[i,j] >= 30 & t_all[i,j] < 40){
+#     t_level[i,j] <- 4
+#   } else if (t_all[i,j] >= 20 & t_all[i,j] < 30){
+#     t_level[i,j] <- 3
+#   } else if (t_all[i,j] >= 10 & t_all[i,j] < 20){
+#     t_level[i,j] <- 2
+#   # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+#   #   t_level$r_19[i] <- 1
+#  }
+# }
+# }
+
+# t_all$r_19 <- ifelse(t_all$r_19<=10, 1, )
+# 
+# as.numeric(unlist(t_all[,2:21]))
+# class()
+# 
+#   for (i in 1:nrow(t_all)){
+# 	  if (t_all$r_19[i] <= 10){
+# 	      t_all$r_19[i] = 1}
+# 	}
+#     
+#   for(i in 1:nrow(df)){
+#     if(df$var[i]==" ?"){
+#         df$var[i]="Private"
+#      }
+# }  
+    
+# frame$twohouses <- ifelse(frame$data>=2, 2, 1)
+  
+```
+#Categorizing Data: 2018
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_18[i] >= 50 & t_all$r_18[i] < 70){
+    t_level$r_18[i] <- 6
+  } else if (t_all$r_18[i] >= 40 & t_all$r_18[i] < 50){
+    t_level$r_18[i] <- 5
+  } else if (t_all$r_18[i] >= 30 & t_all$r_18[i] < 40){
+    t_level$r_18[i] <- 4
+  } else if (t_all$r_18[i] >= 20 & t_all$r_18[i] < 30){
+    t_level$r_18[i] <- 3
+  } else if (t_all$r_18[i] >= 10 & t_all$r_18[i] < 20){
+    t_level$r_18[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2017
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_17[i] >= 50 & t_all$r_17[i] < 70){
+    t_level$r_17[i] <- 6
+  } else if (t_all$r_17[i] >= 40 & t_all$r_17[i] < 50){
+    t_level$r_17[i] <- 5
+  } else if (t_all$r_17[i] >= 30 & t_all$r_17[i] < 40){
+    t_level$r_17[i] <- 4
+  } else if (t_all$r_17[i] >= 20 & t_all$r_17[i] < 30){
+    t_level$r_17[i] <- 3
+  } else if (t_all$r_17[i] >= 10 & t_all$r_17[i] < 20){
+    t_level$r_17[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+
+#Categorizing Data: 2016
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_16[i] >= 50 & t_all$r_16[i] < 70){
+    t_level$r_16[i] <- 6
+  } else if (t_all$r_16[i] >= 40 & t_all$r_16[i] < 50){
+    t_level$r_16[i] <- 5
+  } else if (t_all$r_16[i] >= 30 & t_all$r_16[i] < 40){
+    t_level$r_16[i] <- 4
+  } else if (t_all$r_16[i] >= 20 & t_all$r_16[i] < 30){
+    t_level$r_16[i] <- 3
+  } else if (t_all$r_16[i] >= 10 & t_all$r_16[i] < 20){
+    t_level$r_16[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2015
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_15[i] >= 50 & t_all$r_15[i] < 70){
+    t_level$r_15[i] <- 6
+  } else if (t_all$r_15[i] >= 40 & t_all$r_15[i] < 50){
+    t_level$r_15[i] <- 5
+  } else if (t_all$r_15[i] >= 30 & t_all$r_15[i] < 40){
+    t_level$r_15[i] <- 4
+  } else if (t_all$r_15[i] >= 20 & t_all$r_15[i] < 30){
+    t_level$r_15[i] <- 3
+  } else if (t_all$r_15[i] >= 10 & t_all$r_15[i] < 20){
+    t_level$r_15[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2014
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_14[i] >= 50 & t_all$r_14[i] < 70){
+    t_level$r_14[i] <- 6
+  } else if (t_all$r_14[i] >= 40 & t_all$r_14[i] < 50){
+    t_level$r_14[i] <- 5
+  } else if (t_all$r_14[i] >= 30 & t_all$r_14[i] < 40){
+    t_level$r_14[i] <- 4
+  } else if (t_all$r_14[i] >= 20 & t_all$r_14[i] < 30){
+    t_level$r_14[i] <- 3
+  } else if (t_all$r_14[i] >= 10 & t_all$r_14[i] < 20){
+    t_level$r_14[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2013
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_13[i] >= 50 & t_all$r_13[i] < 70){
+    t_level$r_13[i] <- 6
+  } else if (t_all$r_13[i] >= 40 & t_all$r_13[i] < 50){
+    t_level$r_13[i] <- 5
+  } else if (t_all$r_13[i] >= 30 & t_all$r_13[i] < 40){
+    t_level$r_13[i] <- 4
+  } else if (t_all$r_13[i] >= 20 & t_all$r_13[i] < 30){
+    t_level$r_13[i] <- 3
+  } else if (t_all$r_13[i] >= 10 & t_all$r_13[i] < 20){
+    t_level$r_13[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2012
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_12[i] >= 50 & t_all$r_12[i] < 70){
+    t_level$r_12[i] <- 6
+  } else if (t_all$r_12[i] >= 40 & t_all$r_12[i] < 50){
+    t_level$r_12[i] <- 5
+  } else if (t_all$r_12[i] >= 30 & t_all$r_12[i] < 40){
+    t_level$r_12[i] <- 4
+  } else if (t_all$r_12[i] >= 20 & t_all$r_12[i] < 30){
+    t_level$r_12[i] <- 3
+  } else if (t_all$r_12[i] >= 10 & t_all$r_12[i] < 20){
+    t_level$r_12[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2011
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_11[i] >= 50 & t_all$r_11[i] < 70){
+    t_level$r_11[i] <- 6
+  } else if (t_all$r_11[i] >= 40 & t_all$r_11[i] < 50){
+    t_level$r_11[i] <- 5
+  } else if (t_all$r_11[i] >= 30 & t_all$r_11[i] < 40){
+    t_level$r_11[i] <- 4
+  } else if (t_all$r_11[i] >= 20 & t_all$r_11[i] < 30){
+    t_level$r_11[i] <- 3
+  } else if (t_all$r_11[i] >= 10 & t_all$r_11[i] < 20){
+    t_level$r_11[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2010
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_10[i] >= 50 & t_all$r_10[i] < 70){
+    t_level$r_10[i] <- 6
+  } else if (t_all$r_10[i] >= 40 & t_all$r_10[i] < 50){
+    t_level$r_10[i] <- 5
+  } else if (t_all$r_10[i] >= 30 & t_all$r_10[i] < 40){
+    t_level$r_10[i] <- 4
+  } else if (t_all$r_10[i] >= 20 & t_all$r_10[i] < 30){
+    t_level$r_10[i] <- 3
+  } else if (t_all$r_10[i] >= 10 & t_all$r_10[i] < 20){
+    t_level$r_10[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2009
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_9[i] >= 50 & t_all$r_9[i] < 70){
+    t_level$r_9[i] <- 6
+  } else if (t_all$r_9[i] >= 40 & t_all$r_9[i] < 50){
+    t_level$r_9[i] <- 5
+  } else if (t_all$r_9[i] >= 30 & t_all$r_9[i] < 40){
+    t_level$r_9[i] <- 4
+  } else if (t_all$r_9[i] >= 20 & t_all$r_9[i] < 30){
+    t_level$r_9[i] <- 3
+  } else if (t_all$r_9[i] >= 10 & t_all$r_9[i] < 20){
+    t_level$r_9[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2008
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_8[i] >= 50 & t_all$r_8[i] < 70){
+    t_level$r_8[i] <- 6
+  } else if (t_all$r_8[i] >= 40 & t_all$r_8[i] < 50){
+    t_level$r_8[i] <- 5
+  } else if (t_all$r_8[i] >= 30 & t_all$r_8[i] < 40){
+    t_level$r_8[i] <- 4
+  } else if (t_all$r_8[i] >= 20 & t_all$r_8[i] < 30){
+    t_level$r_8[i] <- 3
+  } else if (t_all$r_8[i] >= 10 & t_all$r_8[i] < 20){
+    t_level$r_8[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2007
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_7[i] >= 50 & t_all$r_7[i] < 70){
+    t_level$r_7[i] <- 6
+  } else if (t_all$r_7[i] >= 40 & t_all$r_7[i] < 50){
+    t_level$r_7[i] <- 5
+  } else if (t_all$r_7[i] >= 30 & t_all$r_7[i] < 40){
+    t_level$r_7[i] <- 4
+  } else if (t_all$r_7[i] >= 20 & t_all$r_7[i] < 30){
+    t_level$r_7[i] <- 3
+  } else if (t_all$r_7[i] >= 10 & t_all$r_7[i] < 20){
+    t_level$r_7[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2006
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_6[i] >= 50 & t_all$r_6[i] < 70){
+    t_level$r_6[i] <- 6
+  } else if (t_all$r_6[i] >= 40 & t_all$r_6[i] < 50){
+    t_level$r_6[i] <- 5
+  } else if (t_all$r_6[i] >= 30 & t_all$r_6[i] < 40){
+    t_level$r_6[i] <- 4
+  } else if (t_all$r_6[i] >= 20 & t_all$r_6[i] < 30){
+    t_level$r_6[i] <- 3
+  } else if (t_all$r_6[i] >= 10 & t_all$r_6[i] < 20){
+    t_level$r_6[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2005
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_5[i] >= 50 & t_all$r_5[i] < 70){
+    t_level$r_5[i] <- 6
+  } else if (t_all$r_5[i] >= 40 & t_all$r_5[i] < 50){
+    t_level$r_5[i] <- 5
+  } else if (t_all$r_5[i] >= 30 & t_all$r_5[i] < 40){
+    t_level$r_5[i] <- 4
+  } else if (t_all$r_5[i] >= 20 & t_all$r_5[i] < 30){
+    t_level$r_5[i] <- 3
+  } else if (t_all$r_5[i] >= 10 & t_all$r_5[i] < 20){
+    t_level$r_5[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2004
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_4[i] >= 50 & t_all$r_4[i] < 70){
+    t_level$r_4[i] <- 6
+  } else if (t_all$r_4[i] >= 40 & t_all$r_4[i] < 50){
+    t_level$r_4[i] <- 5
+  } else if (t_all$r_4[i] >= 30 & t_all$r_4[i] < 40){
+    t_level$r_4[i] <- 4
+  } else if (t_all$r_4[i] >= 20 & t_all$r_4[i] < 30){
+    t_level$r_4[i] <- 3
+  } else if (t_all$r_4[i] >= 10 & t_all$r_4[i] < 20){
+    t_level$r_4[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2003
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_3[i] >= 50 & t_all$r_3[i] < 70){
+    t_level$r_3[i] <- 6
+  } else if (t_all$r_3[i] >= 40 & t_all$r_3[i] < 50){
+    t_level$r_3[i] <- 5
+  } else if (t_all$r_3[i] >= 30 & t_all$r_3[i] < 40){
+    t_level$r_3[i] <- 4
+  } else if (t_all$r_3[i] >= 20 & t_all$r_3[i] < 30){
+    t_level$r_3[i] <- 3
+  } else if (t_all$r_3[i] >= 10 & t_all$r_3[i] < 20){
+    t_level$r_3[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2002
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_2[i] >= 50 & t_all$r_2[i] < 70){
+    t_level$r_2[i] <- 6
+  } else if (t_all$r_2[i] >= 40 & t_all$r_2[i] < 50){
+    t_level$r_2[i] <- 5
+  } else if (t_all$r_2[i] >= 30 & t_all$r_2[i] < 40){
+    t_level$r_2[i] <- 4
+  } else if (t_all$r_2[i] >= 20 & t_all$r_2[i] < 30){
+    t_level$r_2[i] <- 3
+  } else if (t_all$r_2[i] >= 10 & t_all$r_2[i] < 20){
+    t_level$r_2[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2001
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_1[i] >= 50 & t_all$r_1[i] < 70){
+    t_level$r_1[i] <- 6
+  } else if (t_all$r_1[i] >= 40 & t_all$r_1[i] < 50){
+    t_level$r_1[i] <- 5
+  } else if (t_all$r_1[i] >= 30 & t_all$r_1[i] < 40){
+    t_level$r_1[i] <- 4
+  } else if (t_all$r_1[i] >= 20 & t_all$r_1[i] < 30){
+    t_level$r_1[i] <- 3
+  } else if (t_all$r_1[i] >= 10 & t_all$r_1[i] < 20){
+    t_level$r_1[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Categorizing Data: 2000
+```{r}
+for (i in 1:nrow(t_all)){
+  if (t_all$r_0[i] >= 50 & t_all$r_0[i] < 70){
+    t_level$r_0[i] <- 6
+  } else if (t_all$r_0[i] >= 40 & t_all$r_0[i] < 50){
+    t_level$r_0[i] <- 5
+  } else if (t_all$r_0[i] >= 30 & t_all$r_0[i] < 40){
+    t_level$r_0[i] <- 4
+  } else if (t_all$r_0[i] >= 20 & t_all$r_0[i] < 30){
+    t_level$r_0[i] <- 3
+  } else if (t_all$r_0[i] >= 10 & t_all$r_0[i] < 20){
+    t_level$r_0[i] <- 2
+  # } else if (t_all$r_19[i] >= 0 & t_all$r_19[i] < 10){
+  #   t_level$r_19[i] <- 1
+ }
+}
+```
+#Download data csv
+```{r}
+write.csv(t_level,"/Users/sunchiachun/Documents/作業/1082新聞資料處理與視覺呈現/Final report/t_level_unchecked.csv", row.names = FALSE)
+```
+
+#Import checked data csv
+```{r}
+t_level2 <- read.csv("/Users/sunchiachun/Documents/作業/1082新聞資料處理與視覺呈現/Final report/t_level_checked.csv")
+
+#Adjust the dataframe
+
+names(t_level2)[2:11] = gsub(pattern = "r_", replacement = "20", x = names(t_level2)[2:11])
+names(t_level2)[12:21] = gsub(pattern = "r_", replacement = "200", x = names(t_level2)[12:21])
+
+t_level2 <- t_level2[,sort(names(t_level2))]
+t_level2 <- t_level2 %>%
+  select(w_19, everything())
+names(t_level2)[1] <- paste("country")
+```
+
+#Plotting: barplot
+```{r}
+#Test: plotting one country
+barplot(unlist(t_level2[2, -1]), space = 0, border = NA, 
+        xaxt = "n", yaxt ="n", main = t_level2[2, 1], line = -4, 
+        cex.main = 5, ylim = c(0,5 ))
+
+
+#Subset different groups 
+
+g5 <- t_level2[t_level2$`2019` >= 5,]
+g4 <- t_level2[t_level2$`2019` == 4,]
+g3 <- t_level2[t_level2$`2019` == 3,]
+
+#Use for-loop to plot multiple lines 
+par(mfrow = c(4,6), mar = c(0, 0, 0, 0) + 0.2)
+for(i in 1:nrow(g5)){
+barplot(unlist(g5[i, -1]), space = 0, border = NA, 
+        xaxt = "n", yaxt ="n", 
+        main = g5[i, 1], line = -3, cex.main = 1.5, 
+        ylim = c(0,5))
+}
+```
+# Plotting: ggplot2
+```{r}
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(readxl)
+
+g5 %>%
+	gather("year", "degree", 2:21) %>%
+	replace_na(list(degree=0)) %>%
+	ggplot() +
+	aes(year, degree) +
+    geom_col(color="royalblue", fill="royalblue") + 
+	facet_wrap(~ country) + 
+  theme_void() 
+  # scale_x_discrete()
+
+
+
+# g5 %>%
+# 	gather("year", "degree", 2:21) %>%
+# 	replace_na(list(degree=0)) %>%
+# 	ggplot() +
+# 	aes(year, degree) +
+#     geom_col(color="royalblue", fill="royalblue") + 
+# 	facet_wrap(~ country) + 
+#     theme_class() 
+
+# par(mfrow = c(4,6), mar = c(0, 0, 0, 0) + 0.2)
+# for(i in 1:nrow(g5)){
+# barplot(unlist(g5[i, -1]), space = 0, border = NA, 
+#         xaxt = "n", yaxt ="n", 
+#         main = g5[i, 1], line = -3, cex.main = 1.5, 
+#         ylim = c(0,5))
+# }
+
+
+```
+
+# Human Development Index
+```{r}
+url_hdi <- "https://en.wikipedia.org/wiki/List_of_countries_by_Human_Development_Index"
+hdi_country <- read_html(url_hdi) %>%
+  html_nodes("td:nth-child(3) > a") %>%
+  html_text()
+hdi_country <- as.data.frame(hdi_country)%>%
+  mutate(id = row_number())
+
+hdi_19 <- read_html(url_hdi) %>%
+  html_nodes("td:nth-child(4)") %>%
+  html_text()
+hdi_19 <- as.data.frame(hdi_19)
+hdi_19  <- hdi_19 [(1:190),]
+hdi_19 <- as.data.frame(hdi_19)
+hdi_19 <- hdi_19 [-93,] %>%
+  as.data.frame(hdi_19) %>%
+  mutate(id = row_number())
+
+hdi_rank <- merge(hdi_country, hdi_19, by = "id")
+hdi_rank[1] <- NULL
+
+names(hdi_rank)[1]<-"country_name"
+
+
+```
+
+```{r}
+# t_all <- t_19 %>%  left_join(t_18, by = c("w_19" = "w_18")) %>%
+#          left_join(t_17, by = c("w_19" = "w_17")) %>%
+
+hdi <- t_19 %>%  left_join(hdi_rank, by = c("w_19" = "country_name"))
+write.csv(hdi,"hdi.csv", row.names = FALSE)
+```
+
+# Save rda
+```{r}
+
+all_data <- t_all_withNA %>%  left_join(hdi_rank, by = c("w_19" = "country_name"))
+write.csv(all_data,"all_data.csv", row.names = FALSE)
+
+data <- read.csv("all_data - all_data.csv")
+save(data, file="women in parliament.rda")
+
+
+```
+
+
